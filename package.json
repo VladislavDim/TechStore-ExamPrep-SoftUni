@@ -1,0 +1,19 @@
+{
+  "name": "techstore-examprep-softuni",
+  "version": "1.0.0",
+  "description": "TechStore is a full-stack web app built with Node.js, Express.js, and MongoDB. It includes user authentication, data persistence via Mongoose, and server-side rendering with Handlebars. Following RESTful API practices, MVC architecture, and secure password hashing with bcrypt, it enhances backend and database skills.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
