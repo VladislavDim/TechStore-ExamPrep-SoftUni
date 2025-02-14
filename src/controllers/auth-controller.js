@@ -10,7 +10,7 @@ authController.get('/register', (req, res) => {
 authController.post('/register', (req, res) => {
     const userData = req.body;
     authService.register(userData);
-    res.redirect('/auth/register');
+    res.redirect('/auth/login');
 });
 
 export default authController;

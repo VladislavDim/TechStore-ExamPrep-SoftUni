@@ -1,6 +1,6 @@
-const register = (userData) => {
-    console.log(userData);
-}
+import User from "../models/User.js";
+
+const register = (userData) => User.create(userData);
 
 const authService = {
     register
