@@ -8,7 +8,7 @@ const app = express();
 
 //Db setup
 try {
-    const uri = 'mongodb://localhost:27017/techStore'
+    const uri = 'mongodb://127.0.0.1:27017/techStore'
     await mongoose.connect(uri);
     console.log('Db Connected!');
 } catch (error) {
