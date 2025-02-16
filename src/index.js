@@ -20,7 +20,10 @@ try {
 
 //Handlebars setup 
 app.engine('hbs', handlebars.engine({
-    extname: 'hbs'
+    extname: 'hbs',
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true
+    }
 }))
 app.set('view engine', 'hbs');
 app.set('views', './src/views');
@@ -28,7 +31,7 @@ app.set('views', './src/views');
 //Express setup
 app.use(express.static('src/public'));
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser()); 
+app.use(cookieParser());
 app.use(routes);
 
 
