@@ -4,15 +4,15 @@ import bcrypt from 'bcrypt';
 const userSchema = new Schema({
     email: {
         type: String,
-        required: true
+        required: [true, 'Email field is required!']
     },
     username: {
         type: String,
-        required: true
+        required: [true, 'Username field is required!']
     },
     password: {
         type: String,
-        required: true
+        required: [true, 'Password field is required']
     }
 });
 
