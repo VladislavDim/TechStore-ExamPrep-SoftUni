@@ -13,10 +13,17 @@ authController.get('/login', (req, res) => {
 authController.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    const token = await authService.login(email, password);
+    try {
+        const token = await authService.login(email, password);
 
-    res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
-    res.redirect('/');
+        res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
+        res.redirect('/');
+    } catch (err) {
+        res.render('auth/login', {
+            error: getErrorMessage(err),
+            user: { email }
+        })
+    }
 });
 
 authController.get('/register', (req, res) => {
