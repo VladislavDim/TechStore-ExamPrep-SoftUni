@@ -7,22 +7,22 @@
 
 <section class="register-form">
     <div class="container">
-        <form  method="POST">
+        <form method="POST">
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="username">
+                <input type="text" id="name" name="username" value="{{user.username}}">
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" value="{{user.email}}">
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
+                <input type="password" id="password" name="password" value="{{user.password}}">
             </div>
             <div class="form-group">
                 <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirmPassword">
+                <input type="password" id="confirm-password" name="confirmPassword" value="{{user.confirmPassword}}">
             </div>
             <button type="submit" class="btn">Register</button>
             <p>Already have an account? <a href="/auth/login">Login</a></p>

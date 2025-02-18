@@ -32,7 +32,7 @@ authController.post('/register', async (req, res) => {
         res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         res.redirect('/');
     } catch (err) {
-        res.render('auth/register', { error: getErrorMessage(err) });
+        res.render('auth/register', { error: getErrorMessage(err), user: userData });
     }
 });
 
