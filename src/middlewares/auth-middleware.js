@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { AUTH_COOKIE_NAME, JWT_SECRET } from "../config.js"
 
-export const auth = (req, res, next) => {
+export const auth = (options) => (req, res, next) => {
     const token = req.cookies[AUTH_COOKIE_NAME]
 
     if (!token) {
@@ -12,7 +12,7 @@ export const auth = (req, res, next) => {
         const decodedToken = jwt.verify(token, JWT_SECRET);
 
         req.user = decodedToken;
-        res.local.user = decodedToken;
+        res.locals.user = decodedToken;
 
         next();
     } catch (error) {
