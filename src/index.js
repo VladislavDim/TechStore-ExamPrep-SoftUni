@@ -23,6 +23,11 @@ app.engine('hbs', handlebars.engine({
     extname: 'hbs',
     runtimeOptions: {
         allowProtoPropertiesByDefault: true
+    },
+    helpers: {
+        setTitle(title) {
+            this.pageTitle = title;
+        }
     }
 }))
 app.set('view engine', 'hbs');
