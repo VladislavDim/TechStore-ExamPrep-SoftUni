@@ -5,6 +5,7 @@ import routes from './routes.js';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import { auth } from './middlewares/auth-middleware.js';
+import helpers from './helpers/helpers.js';
 
 const app = express();
 
@@ -25,12 +26,8 @@ app.engine('hbs', handlebars.engine({
     runtimeOptions: {
         allowProtoPropertiesByDefault: true
     },
-    helpers: {
-        setTitle(title) {
-            this.pageTitle = title;
-        }
-    }
-}))
+    helpers
+}));
 app.set('view engine', 'hbs');
 app.set('views', './src/views');
 
