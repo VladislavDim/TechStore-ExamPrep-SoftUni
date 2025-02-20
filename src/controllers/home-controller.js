@@ -5,7 +5,7 @@ import homeService from "../services/home-service.js";
 const homeController = Router();
 
 homeController.get('/', async (req, res) => {
-    const items = await homeService.getAllItems();
+    const items = await homeService.getAllOffers();
     res.render('home', { items });
 });
 

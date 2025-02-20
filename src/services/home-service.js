@@ -1,11 +1,11 @@
 import Device from "../models/Device.js";
 
-const getAllItems = () => {
+const getAllOffers = () => {
     return Device.find({});
 };
 
 const homeService = {
-    getAllItems
+    getAllOffers
 }
 
 export default homeService;
