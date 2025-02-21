@@ -7,8 +7,13 @@ const createOffer = (offerData, ownerId) => {
     });
 };
 
+const getOfferById = (offerId) => {
+    return Device.findById(offerId);
+};
+
 const offerService = {
-    createOffer
+    createOffer,
+    getOfferById
 }
 
 export default offerService;

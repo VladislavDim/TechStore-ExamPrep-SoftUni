@@ -21,4 +21,10 @@ offerController.post('/create', async (req, res) => {
     res.redirect('/');
 });
 
+offerController.get('/details/:offerId', async (req, res) => {
+    const offerId = req.params.offerId;
+    const offer = await offerService.getOfferById(offerId);
+    res.render('details', { offer });
+});
+
 export default offerController;
