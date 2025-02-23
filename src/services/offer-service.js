@@ -19,11 +19,18 @@ const updateOfferById = (offerId, offerData) => {
     return Device.findByIdAndUpdate(offerId, offerData, { runValidators: true })
 };
 
+const addToPreferredList = (offerId, userId) => {
+     return Device.findByIdAndUpdate(offerId, {
+        $addToSet: { preferredList: userId }
+    });
+};
+
 const offerService = {
     createOffer,
     getOfferById,
     deleteOffer,
-    updateOfferById
+    updateOfferById,
+    addToPreferredList
 }
 
 export default offerService;

@@ -31,8 +31,11 @@
             <button class="btn edit"><a href="/offer/edit/{{offer.id}}">Edit</a></button>
             <button class="btn delete"><a href="/offer/delete/{{offer.id}}">Delete</a></button>
             {{else}}
-            <button class="btn prefer"><a href="">Prefer</a></button>
+            {{#if isPreferred}}
             <p class="prefer-message">You've already preferred this device</p>
+            {{else}}
+            <button class="btn prefer"><a href="/offer/prefer/{{offer.id}}">Prefer</a></button>
+            {{/if}}
             {{/if}}
         </div>
     </div>

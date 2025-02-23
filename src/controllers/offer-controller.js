@@ -25,7 +25,8 @@ offerController.get('/details/:offerId', async (req, res) => {
     const offerId = req.params.offerId;
     const offer = await offerService.getOfferById(offerId);
     const isOwner = offer.owner?.equals(req.user?.id);
-    res.render('details', { offer, isOwner });
+    const isPreferred = offer.preferredList.includes(req.user.id);
+    res.render('details', { offer, isOwner, isPreferred });
 });
 
 offerController.get('/delete/:offerId', async (req, res) => {
@@ -69,4 +70,10 @@ offerController.post('/edit/:offerId', async (req, res) => {
     res.redirect('/');
 });
 
+offerController.get('/prefer/:offerId', async (req, res) => {
+    const offerId = req.params.offerId;
+    await offerService.addToPreferredList(offerId, req.user.id);
+
+    res.redirect(`/offer/details/${offerId}`);
+});
 export default offerController;
