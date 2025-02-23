@@ -24,7 +24,6 @@ offerController.post('/create', async (req, res) => {
 offerController.get('/details/:offerId', async (req, res) => {
     const offerId = req.params.offerId;
     const offer = await offerService.getOfferById(offerId);
-    res.render('details', { offer });
     const isOwner = offer.owner?.equals(req.user?.id);
     res.render('details', { offer, isOwner });
 });
@@ -42,4 +41,18 @@ offerController.get('/delete/:offerId', async (req, res) => {
     await offerService.deleteOffer(offerId);
     res.redirect('/');
 });
+
+offerController.get('/edit/:offerId', async (req, res) => {
+    const offerId = req.params.offerId;
+    const offer = await offerService.getOfferById(offerId);
+
+    if (!offer.owner?.equals(req.user?.id)) {
+        //TODO: helper function setError
+        //res.setError('You are not the movie owner!')
+        return res.redirect('/404');
+    }
+
+    res.render('edit', { offer });
+});
+
 export default offerController;
