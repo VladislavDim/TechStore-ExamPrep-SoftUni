@@ -25,6 +25,8 @@ offerController.get('/details/:offerId', async (req, res) => {
     const offerId = req.params.offerId;
     const offer = await offerService.getOfferById(offerId);
     res.render('details', { offer });
+    const isOwner = offer.owner?.equals(req.user?.id);
+    res.render('details', { offer, isOwner });
 });
 
 export default offerController;
