@@ -55,4 +55,18 @@ offerController.get('/edit/:offerId', async (req, res) => {
     res.render('edit', { offer });
 });
 
+offerController.post('/edit/:offerId', async (req, res) => {
+    const offerData = req.body;
+    const offerId = req.params.offerId;
+    console.log(offerData);
+    try {
+        await offerService.updateOfferById(offerId, offerData);
+    } catch (err) {
+        //TODO: add error handling and display error message
+        return res.render('edit', { offer: offerData });
+    }
+    //TODO: add catalog page and redirect to it
+    res.redirect('/');
+});
+
 export default offerController;

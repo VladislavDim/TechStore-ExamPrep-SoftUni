@@ -15,10 +15,15 @@ const deleteOffer = (offerId) => {
     return Device.findByIdAndDelete(offerId);
 };
 
+const updateOfferById = (offerId, offerData) => {
+    return Device.findByIdAndUpdate(offerId, offerData, { runValidators: true })
+};
+
 const offerService = {
     createOffer,
     getOfferById,
-    deleteOffer
+    deleteOffer,
+    updateOfferById
 }
 
 export default offerService;
