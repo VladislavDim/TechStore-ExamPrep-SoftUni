@@ -11,9 +11,14 @@ const getOfferById = (offerId) => {
     return Device.findById(offerId);
 };
 
+const deleteOffer = (offerId) => {
+    return Device.findByIdAndDelete(offerId);
+};
+
 const offerService = {
     createOffer,
-    getOfferById
+    getOfferById,
+    deleteOffer
 }
 
 export default offerService;

@@ -29,4 +29,17 @@ offerController.get('/details/:offerId', async (req, res) => {
     res.render('details', { offer, isOwner });
 });
 
+offerController.get('/delete/:offerId', async (req, res) => {
+    const offerId = req.params.offerId;
+    const offer = await offerService.getOfferById(offerId);
+
+    if (!offer.owner?.equals(req.user?.id)) {
+        //TODO: helper function setError
+        //res.setError('You are not the offer owner!')
+        return res.redirect('/404');
+    }
+
+    await offerService.deleteOffer(offerId);
+    res.redirect('/');
+});
 export default offerController;
