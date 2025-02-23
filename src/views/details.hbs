@@ -27,10 +27,13 @@
             </div>
         </div>
         <div class="product-actions">
-            <button class="btn edit"><a href="">Edit</a></button>
-            <button class="btn delete"><a href="">Delete</a></button>
+            {{#if isOwner}}
+            <button class="btn edit"><a href="/offer/edit/{{offer.id}}">Edit</a></button>
+            <button class="btn delete"><a href="/offer/delete/{{offer.id}}">Delete</a></button>
+            {{else}}
             <button class="btn prefer"><a href="">Prefer</a></button>
             <p class="prefer-message">You've already preferred this device</p>
+            {{/if}}
         </div>
     </div>
 </section>
