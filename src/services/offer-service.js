@@ -11,6 +11,10 @@ const getOfferById = (offerId) => {
     return Device.findById(offerId);
 };
 
+const getAllOffers = () => {
+    return Device.find();
+};
+
 const deleteOffer = (offerId) => {
     return Device.findByIdAndDelete(offerId);
 };
@@ -20,7 +24,7 @@ const updateOfferById = (offerId, offerData) => {
 };
 
 const addToPreferredList = (offerId, userId) => {
-     return Device.findByIdAndUpdate(offerId, {
+    return Device.findByIdAndUpdate(offerId, {
         $addToSet: { preferredList: userId }
     });
 };
@@ -37,7 +41,8 @@ const offerService = {
     deleteOffer,
     updateOfferById,
     addToPreferredList,
-    removeFromPreferredList
+    removeFromPreferredList,
+    getAllOffers
 }
 
 export default offerService;
