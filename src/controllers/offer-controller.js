@@ -25,7 +25,7 @@ offerController.get('/details/:offerId', async (req, res) => {
     const offerId = req.params.offerId;
     const offer = await offerService.getOfferById(offerId);
     const isOwner = offer.owner?.equals(req.user?.id);
-    const isPreferred = offer.preferredList.includes(req.user.id);
+    const isPreferred = offer.preferredList?.includes(req.user?.id);
     res.render('details', { offer, isOwner, isPreferred });
 });
 
