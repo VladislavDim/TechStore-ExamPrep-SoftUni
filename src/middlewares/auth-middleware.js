@@ -23,6 +23,7 @@ export const auth = (options) => (req, res, next) => {
 
 export const isAuth = (req, res, next) => {
     if (!req.user) {
+        res.setError('You must be logged in to perform this action.');
         return res.redirect('/auth/login');
     }
 

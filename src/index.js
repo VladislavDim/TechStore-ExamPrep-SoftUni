@@ -1,9 +1,11 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
+import expressSession from 'express-session';
 
 import routes from './routes.js';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
+import { tempData } from './middlewares/temp-data-middleware.js';
 import { auth } from './middlewares/auth-middleware.js';
 import helpers from './helpers/helpers.js';
 
@@ -35,6 +37,16 @@ app.set('views', './src/views');
 app.use(express.static('src/public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(expressSession({
+    secret: "asd2312ft$%3df3242ds3",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        httpOnly: true
+    }
+}));
+app.use(tempData);
 app.use(auth());
 app.use(routes);
 
