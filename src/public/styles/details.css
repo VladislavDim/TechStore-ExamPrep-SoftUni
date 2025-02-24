@@ -83,8 +83,8 @@
 }
 
 .product-actions a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 .product-actions .btn.edit {
@@ -99,6 +99,11 @@
 
 .product-actions .btn.prefer {
   background: #ffc107;
+  font-weight: bold;
+}
+
+.product-actions .btn.unprefer {
+  background: #bd0404;
   font-weight: bold;
 }
 

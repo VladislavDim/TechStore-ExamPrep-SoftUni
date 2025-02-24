@@ -76,4 +76,12 @@ offerController.get('/prefer/:offerId', async (req, res) => {
 
     res.redirect(`/offer/details/${offerId}`);
 });
+
+offerController.get('/unprefer/:offerId', async (req, res) => {
+    const offerId = req.params.offerId;
+    await offerService.removeFromPreferredList(offerId,req.user.id);
+
+    res.redirect(`/offer/details/${offerId}`);
+});
+
 export default offerController;

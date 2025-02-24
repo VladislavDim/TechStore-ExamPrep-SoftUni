@@ -33,6 +33,7 @@
             {{else}}
             {{#if isPreferred}}
             <p class="prefer-message">You've already preferred this device</p>
+            <button class="btn unprefer"><a href="/offer/unprefer/{{offer.id}}">Unprefer</a></button>
             {{else}}
             <button class="btn prefer"><a href="/offer/prefer/{{offer.id}}">Prefer</a></button>
             {{/if}}

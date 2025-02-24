@@ -25,12 +25,19 @@ const addToPreferredList = (offerId, userId) => {
     });
 };
 
+const removeFromPreferredList = (offerId, userId) => {
+    return Device.findByIdAndUpdate(offerId, {
+        $pull: { preferredList: userId }
+    });
+};
+
 const offerService = {
     createOffer,
     getOfferById,
     deleteOffer,
     updateOfferById,
-    addToPreferredList
+    addToPreferredList,
+    removeFromPreferredList
 }
 
 export default offerService;
