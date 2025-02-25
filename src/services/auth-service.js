@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import { generateToken } from '../utils/authUtils.js';
 
 const register = async (userData) => {
-
+    
     if (userData.password !== userData.confirmPassword) {
         throw new Error('Password missmatch!');
     }
@@ -11,7 +11,7 @@ const register = async (userData) => {
     const user = await User.findOne({ email: userData.email }).select({ _id: true });
 
     if (user) {
-        throw new Error('User already exists');
+        throw new Error('A user with this email already exists!');
     }
 
     const createdUser = await User.create(userData);
