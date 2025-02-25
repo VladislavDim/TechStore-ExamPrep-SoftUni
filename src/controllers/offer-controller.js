@@ -48,8 +48,7 @@ offerController.get('/edit/:offerId', async (req, res) => {
     const offer = await offerService.getOfferById(offerId);
 
     if (!offer.owner?.equals(req.user?.id)) {
-        //TODO: helper function setError
-        //res.setError('You are not the movie owner!')
+        res.setError('You are not the owner of this offer!')
         return res.redirect('/404');
     }
 
