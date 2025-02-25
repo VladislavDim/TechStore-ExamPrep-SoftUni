@@ -2,13 +2,13 @@ import { model, Schema } from "mongoose";
 import bcrypt from 'bcrypt';
 
 const userSchema = new Schema({
-    email: {
-        type: String,
-        required: [true, 'Email field is required!']
-    },
     username: {
         type: String,
         required: [true, 'Username field is required!']
+    },
+    email: {
+        type: String,
+        required: [true, 'Email field is required!']
     },
     password: {
         type: String,
