@@ -1,12 +1,12 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
-import expressSession from 'express-session';
+import expressSession from 'express-session'
 
 import routes from './routes.js';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-import { tempData } from './middlewares/temp-data-middleware.js';
 import { auth } from './middlewares/auth-middleware.js';
+import { tempData } from './middlewares/temp-data-middleware.js';
 import helpers from './helpers/helpers.js';
 
 const app = express();
