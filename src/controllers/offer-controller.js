@@ -1,24 +1,25 @@
 import { Router } from "express";
 import offerService from "../services/offer-service.js";
+import { isAuth } from "../middlewares/auth-middleware.js";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const offerController = Router();
 
-offerController.get('/create', (req, res) => {
+offerController.get('/create', isAuth, (req, res) => {
     res.render('create');
 });
 
-offerController.post('/create', async (req, res) => {
+offerController.post('/create', isAuth, async (req, res) => {
     const newOffer = req.body;
     const userId = req.user?.id;
 
     try {
         await offerService.createOffer(newOffer, userId);
     } catch (error) {
-        console.log(error)
-        return res.render('create', { offer: newOffer });
+        return res.render('create', { offer: newOffer, error: getErrorMessage(error) });
     }
 
-    res.redirect('/');
+    res.redirect('/offer/catalog');
 });
 
 offerController.get('/details/:offerId', async (req, res) => {
