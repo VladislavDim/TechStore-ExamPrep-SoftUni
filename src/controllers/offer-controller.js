@@ -55,7 +55,7 @@ offerController.get('/edit/:offerId', isAuth, async (req, res) => {
     res.render('edit', { offer });
 });
 
-offerController.post('/edit/:offerId',isAuth, async (req, res) => {
+offerController.post('/edit/:offerId', isAuth, async (req, res) => {
     const offerData = req.body;
     const offerId = req.params.offerId;
 
@@ -68,12 +68,17 @@ offerController.post('/edit/:offerId',isAuth, async (req, res) => {
     res.redirect('/catalog');
 });
 
-offerController.get('/prefer/:offerId', async (req, res) => {
+offerController.get('/prefer/:offerId', isAuth, async (req, res) => {
     const offerId = req.params.offerId;
+    
+    if (offerService.isOfferOwner(offerId, req.user.id)) {
+        res.setError("You cannot add your own offer to your preferred list.");
+        return res.redirect('/catalog')
+    }
     await offerService.addToPreferredList(offerId, req.user.id);
 
-    
-    res.redirect(`/offer/details/${offerId}`);
+
+    return res.redirect(`/offer/details/${offerId}`);
 });
 
 offerController.get('/unprefer/:offerId', async (req, res) => {

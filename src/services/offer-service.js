@@ -6,7 +6,10 @@ const createOffer = (offerData, ownerId) => {
         owner: ownerId
     });
 };
-
+const isOfferOwner = async (offerId, userId) => {
+    const offer = await getOfferById(offerId);
+    return offer.owner === userId;
+};
 const getOfferById = (offerId) => {
     return Device.findById(offerId);
 };
@@ -42,7 +45,8 @@ const offerService = {
     updateOfferById,
     addToPreferredList,
     removeFromPreferredList,
-    getAllOffers
+    getAllOffers,
+    isOfferOwner
 }
 
 export default offerService;
