@@ -30,13 +30,12 @@ offerController.get('/details/:offerId', async (req, res) => {
     res.render('details', { offer, isOwner, isPreferred });
 });
 
-offerController.get('/delete/:offerId', async (req, res) => {
+offerController.get('/delete/:offerId', isAuth, async (req, res) => {
     const offerId = req.params.offerId;
     const offer = await offerService.getOfferById(offerId);
 
     if (!offer.owner?.equals(req.user?.id)) {
-        //TODO: helper function setError
-        //res.setError('You are not the offer owner!')
+        res.setError('You are not the offer owner!')
         return res.redirect('/404');
     }
 
@@ -74,6 +73,7 @@ offerController.get('/prefer/:offerId', async (req, res) => {
     const offerId = req.params.offerId;
     await offerService.addToPreferredList(offerId, req.user.id);
 
+    
     res.redirect(`/offer/details/${offerId}`);
 });
 
