@@ -55,18 +55,17 @@ offerController.get('/edit/:offerId', async (req, res) => {
     res.render('edit', { offer });
 });
 
-offerController.post('/edit/:offerId', async (req, res) => {
+offerController.post('/edit/:offerId',isAuth, async (req, res) => {
     const offerData = req.body;
     const offerId = req.params.offerId;
-    console.log(offerData);
+
     try {
         await offerService.updateOfferById(offerId, offerData);
     } catch (err) {
-        //TODO: add error handling and display error message
-        return res.render('edit', { offer: offerData });
+        return res.render('edit', { offer: offerData, error: getErrorMessage(err) });
     }
-    //TODO: add catalog page and redirect to it
-    res.redirect('/');
+
+    res.redirect('/catalog');
 });
 
 offerController.get('/prefer/:offerId', async (req, res) => {
