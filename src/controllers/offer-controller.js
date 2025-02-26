@@ -43,7 +43,7 @@ offerController.get('/delete/:offerId', isAuth, async (req, res) => {
     res.redirect('/');
 });
 
-offerController.get('/edit/:offerId', async (req, res) => {
+offerController.get('/edit/:offerId', isAuth, async (req, res) => {
     const offerId = req.params.offerId;
     const offer = await offerService.getOfferById(offerId);
 
