@@ -32,10 +32,16 @@ const addToPreferredList = (offerId, userId) => {
     });
 };
 
-const removeFromPreferredList = (offerId, userId) => {
-    return Device.findByIdAndUpdate(offerId, {
-        $pull: { preferredList: userId }
-    });
+const removeFromPreferredList = async (offerId, userId) => {
+    const offer = await getOfferById(offerId);
+
+    if (offer.preferredList.includes(userId)) {
+        return Device.findByIdAndUpdate(offerId, {
+            $pull: { preferredList: userId }
+        });
+    }
+    
+    throw new Error("You have not added this offer to your preferred list!")
 };
 
 const offerService = {
