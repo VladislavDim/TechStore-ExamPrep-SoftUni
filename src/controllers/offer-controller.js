@@ -81,13 +81,13 @@ offerController.get('/prefer/:offerId', isAuth, async (req, res) => {
     return res.redirect(`/offer/details/${offerId}`);
 });
 
-offerController.get('/unprefer/:offerId', async (req, res) => {
+offerController.get('/unprefer/:offerId', isAuth, async (req, res) => {
     const offerId = req.params.offerId;
 
     try {
         await offerService.removeFromPreferredList(offerId, req.user.id);
     } catch (error) {
-       res.setError(getErrorMessage(error));
+        res.setError(getErrorMessage(error));
     }
 
     res.redirect(`/offer/details/${offerId}`);
